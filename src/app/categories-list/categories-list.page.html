@@ -1,0 +1,26 @@
+<ion-content *ngIf="catlist">
+  <ion-grid>
+    <ng-container   *ngFor="let cat of catlist; let i = index;">
+      <ng-container *ngIf="i % cols === 0">
+        <ion-row>
+          <ion-col size="6" (click)="click(cat.name)">
+            <ion-card >
+              <ion-card-header>
+                <ion-card-title color="light">{{cat.name}}</ion-card-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+          <ng-container *ngIf="i+1 < catlist.length">
+            <ion-col size="6" (click)="click(catlist[i+1].name)">
+              <ion-card  >
+                <ion-card-header>
+                  <ion-card-title color="light">{{catlist[i+1].name}}</ion-card-title>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          </ng-container>
+        </ion-row>
+      </ng-container>
+    </ng-container>
+  </ion-grid>
+</ion-content>

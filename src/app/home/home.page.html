@@ -1,0 +1,89 @@
+<ion-content color="primary">
+  <ion-toolbar color="primary" class="ion-padding-start ion-padding-end ion-padding-top">
+      <ion-text slot="start">
+        <div>Hi, Edwards!</div>
+      </ion-text>
+      <ion-avatar slot="end">
+        <img alt="Silhouette of a person's head" src="../../assets/images/avatar.jpg" />
+      </ion-avatar>
+    </ion-toolbar>
+  <ion-searchbar showCancelButton="focus" class="custom ion-padding-start ion-padding-end"></ion-searchbar>
+  <ion-grid class="ion-margin-top">
+    <ion-row class="ion-justify-content-between ion-padding-start ion-padding-end">
+      <ion-col size="4">
+        <div>Categories</div>
+      </ion-col>
+      <ion-col size="3">
+        <ion-text color="medium">
+          <div (click)="goToCategories()">See more</div>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-start ion-padding-end">
+      <ion-col size="3">
+        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom">
+          <ion-icon src="assets/horror.svg" size="large"></ion-icon>
+          <ion-text color="medium">
+            <div>Horror</div>
+          </ion-text>
+        </ion-card>
+      </ion-col>
+      <ion-col size="3">
+        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom">
+          <ion-icon src="assets/romance.svg" size="large"></ion-icon>
+          <ion-text color="medium">
+            <div >Romance</div>
+          </ion-text>
+        </ion-card>
+      </ion-col>
+      <ion-col size="3">
+        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom">
+          <ion-icon src="assets/comedy.svg" size="large"></ion-icon>
+          <ion-text color="medium">
+            <div >Comedy</div>
+          </ion-text>
+        </ion-card>
+      </ion-col>
+      <ion-col size="3">
+        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom">
+          <ion-icon src="assets/drama.svg" size="large"></ion-icon>
+          <ion-text color="medium">
+            <div>Drama</div>
+          </ion-text>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="ion-margin-top">
+    <ion-row class="ion-justify-content-between ion-padding-start ion-padding-end">
+      <ion-col size="4">
+        <div>Popular</div>
+      </ion-col>
+      <ion-col size="3">
+        <ion-text color="medium">
+          <div (click)="goToPopular()">See more</div>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <swiper-container
+    class="ion-padding ion-margin-bottom"
+    effect="coverflow"
+    grab-cursor="true"
+    centered-slides="true"
+    slides-per-view="1.3"
+    initial-slide="1"
+    coverflow-effect-rotate="50"
+    coverflow-effect-stretch="0"
+    coverflow-effect-depth="100"
+    coverflow-effect-modifier="1"
+    coverflow-effect-slide-shadows="true"
+    #slides
+  >
+    <swiper-slide *ngFor="let movie of popularMovies;">
+      <div><img src="{{movie.posterPath}}" (click)="toDetails()"/></div>
+    </swiper-slide>
+
+  </swiper-container>
+</ion-content>
+

@@ -1,0 +1,69 @@
+.tool-bar-text {
+  margin-right: 40px;
+}
+.av-seat {
+  width: 25px;
+  height: 25px;
+  outline: 1px solid #546ee5;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 5px;
+}
+.icon {
+  outline: 1px solid;
+  border-radius: 4px;
+  font-size: 25px;
+}
+.box {
+  width: 300px;
+  height: 45px;
+  border: solid 3px #fcfcfc;
+  border-color: #fcfcfc transparent transparent transparent;
+  border-radius: 50%;
+  margin: 10px auto 0px;
+}
+.reserved-seat {
+  background-color: #454b6b;
+  outline-color: #454b6b;
+  margin-right: 5px;
+}
+.selected-seat {
+  background-color: #546ee5;
+  margin-right: 5px;
+}
+ion-modal#example-modal {
+  --width: fit-content;
+  --min-width: 250px;
+  --height: fit-content;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  --background: #151935;
+}
+
+
+
+ion-modal#example-modal .wrapper {
+  margin-bottom: 10px;
+  /*background-color: #151935;*/
+}
+
+.ion-page {
+  background-color: #151935;
+}
+
+ion-datetime {
+  --background: #151935;
+  border-radius: 16px;
+ /* box-shadow: rgba(var(--ion-color-rose-rgb), 0.3) 0px 10px 15px -3px;*/
+  color: white;
+}
+.show-time-box {
+  padding: 10px 5px;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+.nb-seats {
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+  color: var(--ion-color-medium);
+}

@@ -1,0 +1,28 @@
+<ion-content *ngIf="movies  ">
+  <ion-grid>
+    <ng-container   *ngFor="let cat of movies; let i = index;">
+      <ng-container *ngIf="i % cols === 0">
+        <ion-row>
+          <ion-col size="6" (click)="click(i)">
+            <ion-card >
+              <img class="img" [src]="movies[i].posterPath" alt="some i">
+              <ion-card-header class="title">
+                <ion-card-title color="light">{{movies[i].title}}</ion-card-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+          <ng-container *ngIf="i+1 < movies.length">
+            <ion-col size="6" (click)="click(i+1)">
+              <ion-card  >
+                <img class="img" [src]="movies[i+1].posterPath" alt="some i">
+                <ion-card-header class="title">
+                  <ion-card-title color="light">{{movies[i+1].title}}</ion-card-title>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          </ng-container>
+        </ion-row>
+      </ng-container>
+    </ng-container>
+  </ion-grid>
+</ion-content>

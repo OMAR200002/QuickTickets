@@ -1,0 +1,27 @@
+<ion-content color="primary" *ngIf="movie;else load">
+  <div class="wrapper ion-padding-start ion-padding-end">
+    <div class="film-image-container">
+      <img src="{{movie.posterPath}}" class="film-image" alt="exemple">
+    </div>
+
+    <div class="film-details-container">
+      <div class="film-title">{{movie.title}} </div>
+      <div class="collection">
+        <div class="film-director">Original language:{{movie.originLanguage}}</div>
+        <div class="film-rating">| {{movie.voteAverage}} 💛 </div>
+      </div>
+
+      <div class="film-category"> {{Category}} </div>
+      <div class="film-synopsis">
+       <span class="syn">Synopsis</span>
+        <div>{{movie.overview}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="bookmark-button-container">
+    <ion-button expand="full" color="tertiary" (click)="bookmarkFilm(movie)">Bookmark Film</ion-button>
+  </div>
+</ion-content>
+<ng-template #load>
+  <div>wait</div>
+</ng-template>
