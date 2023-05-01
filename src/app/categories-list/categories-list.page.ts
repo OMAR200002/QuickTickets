@@ -1,5 +1,5 @@
 import { Component , OnInit} from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import {IonicModule, NavController, Platform} from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {CommonModule} from "@angular/common";
@@ -14,23 +14,29 @@ import {Category} from "../models/category";
   imports: [CommonModule,IonicModule, ReactiveFormsModule,RouterModule],
 })
 export class CategoriesListPage implements OnInit {
-  catlist!: Category[];
-  constructor(private router: Router,private categoriesService: CategoriesService) {
-    this.catlist=[]
+  catlist!: Array<Category>;
+
+  constructor(private router: Router,private categoriesService: CategoriesService,private platform: Platform, private navCtrl: NavController) {
+
+
   }
+
 
   cols: number=2;
 
 
   ngOnInit(): void {
 
+
+    this.categoriesService.subject.subscribe({next:value => {this.catlist=value;console.log(this.catlist)}})
+    //console.log(this.catlist)
     this.categoriesService.readAllCategories();
-    this.categoriesService.subject.subscribe({next:value => this.catlist=value})
-    console.log(this.catlist)
+    //console.log(this.catlist)
 
   }
 
   click(cat:any){
+
     this.router.navigateByUrl("/movies-list/"+cat);
   }
 }

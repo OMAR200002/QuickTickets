@@ -36,7 +36,7 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'buy-ticket',
+        path: 'buy-ticket/:MovieId',
         children: [
           {
             path: '',

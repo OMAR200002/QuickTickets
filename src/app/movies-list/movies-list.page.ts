@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -7,6 +7,7 @@ import {Movie} from "../models/movie";
 import {MoviesService} from "../services/movies/movies.service";
 import {async} from "@angular/core/testing";
 import {interval} from "rxjs";
+import {CategoriesService} from "../services/categories/categories.service";
 
 @Component({
   selector: 'app-movies-list',
@@ -15,27 +16,30 @@ import {interval} from "rxjs";
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule,RouterModule]
 })
-export class MoviesListPage implements OnInit {
+export class MoviesListPage implements OnInit{
   categoryName!: string;
   isCharged:boolean=false
   movies!: Movie[];
-  constructor(private router: Router,private moviesService: MoviesService,private route: ActivatedRoute) { }
+  constructor(private router: Router,private moviesService: MoviesService,private route: ActivatedRoute,private categoriesService:CategoriesService) { }
+
 
   ngOnInit() {
     // this.categoryName = this.route.snapshot.params['categoryName'];
      this.route.params.subscribe(
-       { next:(param)=>{this.categoryName=param['categoryName'];this.moviesService.readMoviesByCategory(this.categoryName);}}
+       { next:(param)=>{this.categoryName=param['categoryName'];
+         console.log("param"+this.categoryName)
+         this.moviesService.readMoviesByCategory(this.categoryName);}}
 
      );
 
 
 
-    this.moviesService.Moviessubject.subscribe({next:value => {this.movies=value;this.isCharged=!this.isCharged}})
-    while(true){console.log(this.categoryName)}
+    this.moviesService.Moviessubject.subscribe({next:value => {this.movies=value;console.log(this.movies)}})
+
     //this.movies =  this.moviesService.getMoviesByCategory(this.categoryName);
 
 
-
+console.log("movie list")
 
   }
 

@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MoviesService} from "../services/movies/movies.service";
 import {Movie} from "../models/movie";
+import {BookingService} from "../services/booking/booking.service";
 
 @Component({
   selector: 'app-movie-detail',
@@ -18,7 +19,7 @@ export class MovieDetailPage implements OnInit {
   isLooding:boolean=true;
 MovieId!:any;
   Category!:any;
-  constructor(private route:ActivatedRoute,private movieService:MoviesService,private r:Router) { }
+  constructor(private route:ActivatedRoute,private movieService:MoviesService,private r:Router,private bookingService:BookingService) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -40,7 +41,9 @@ this.movieService.subject.subscribe({next:value => this.movie=value})
   }
 
   bookmarkFilm(movie: Movie) {
-    this.r.navigateByUrl("/buy-ticket")
+    // this.bookingService.booking(movie);
+
+    this.r.navigateByUrl("/tabs/buy-ticket/"+movie.id)
 
   }
 }

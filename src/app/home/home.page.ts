@@ -31,6 +31,7 @@ export class HomePage implements OnInit{
 
   goToCategories() {
     this.router.navigateByUrl("/categories-list");
+
   }
 
   toDetails() {

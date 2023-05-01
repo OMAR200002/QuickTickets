@@ -22,6 +22,7 @@ export class MoviesService {
   }
 
   async readMoviesByCategory(categoryName: string) {
+    this.movies=[];
     const q = query(collection(this.db, categoryName + "_movies"));
 
     const querySnapshot = await getDocs(q);
@@ -58,6 +59,7 @@ async readMovieById(movieCategorie: string, id: string) {
   }
 }
   async readPopularMovies() {
+    this.popularMovies=[]
     const q = query(collection(this.db,  "Popular_movies"));
 
     const querySnapshot = await getDocs(q);

@@ -1,16 +1,16 @@
-<ion-content [fullscreen]="true" color="primary">
+<ion-content [fullscreen]="true" color="primary" >
   <ion-toolbar color="primary" class="ion-text-center">
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
         <ion-icon name="chevron-back" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
-   <ion-text color="light" class="tool-bar-text ion-margin-end">
+   <ion-text color="light" class="tool-bar-text ion-margin-end" >
      Select seats
    </ion-text>
   </ion-toolbar>
   <div class="box"></div>
-  <ion-grid>
+  <ion-grid *ngIf="seats">
     <ion-row
       class="ion-align-items-center ion-padding-start ion-padding-end"
       *ngFor="let row of rows;let index">
@@ -88,15 +88,15 @@
              <ion-text>
                <h5 style="margin: 0 5px 0px 0px;">Date:</h5>
              </ion-text>
-              <ion-text>May, 15, Thursday</ion-text>
+              <ion-text>December, 15, Thursday</ion-text>
             </ion-row>
           </ion-grid>
       </ion-col>
       <ion-col size="2">
-        <ion-icon
-          name="calendar-outline"
-          id="open-custom-dialog"
-          style="font-size: 25px"></ion-icon>
+<!--        <ion-icon-->
+<!--          name="calendar-outline"-->
+<!--          id="open-custom-dialog"-->
+<!--          style="font-size: 25px"></ion-icon>-->
         <ion-modal id="example-modal" #modal trigger="open-custom-dialog" class="ion-padding-start ion-padding-end">
           <ng-template>
             <div class="wrapper">
@@ -119,31 +119,16 @@
           <ion-text style="font-size: 1.1rem" color="light">9:00 AM</ion-text>
         </ion-card>
       </ion-col>
-      <ion-col size="4">
-        <ion-card class="ion-text-center show-time-box" color="tertiary" >
-          <ion-text style="font-size: 1.1rem" color="light" >11:00 AM</ion-text>
-        </ion-card>
-      </ion-col>
-      <ion-col size="4">
-        <ion-card class="ion-text-center show-time-box" color="tertiary" >
-          <ion-text style="font-size: 1.1rem" color="light" >8:00 PM</ion-text>
-        </ion-card>
-      </ion-col>
-      <ion-col size="4">
-        <ion-card class="ion-text-center show-time-box" color="tertiary" >
-          <ion-text style="font-size: 1.1rem" color="light" >11:00 PM</ion-text>
-        </ion-card>
-      </ion-col>
     </ion-row>
     <ion-row class="ion-padding-start ion-padding-end">
       <ion-col size="4">
         <p class="nb-seats">{{selectedSeats}} seats</p>
-        <ion-text color="warning">45,50 $</ion-text>
+        <ion-text color="warning">{{selectedSeats*20}} $</ion-text>
       </ion-col>
       <ion-col size="8">
         <ion-grid>
           <ion-row class="ion-justify-content-end">
-            <ion-button  shape="round" color="tertiary" size="large">
+            <ion-button  shape="round" color="tertiary" size="large" (click)="buy()">
               <ion-icon slot="start" name="cart-outline" class="ion-padding-start"></ion-icon>
               <ion-text class="ion-padding-end">Buy Ticket</ion-text>
             </ion-button>
