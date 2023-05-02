@@ -21,7 +21,7 @@
     </ion-row>
     <ion-row class="ion-padding-start ion-padding-end">
       <ion-col size="3">
-        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom">
+        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom" (click)="go('Horror')">
           <ion-icon src="assets/horror.svg" size="large"></ion-icon>
           <ion-text color="medium">
             <div>Horror</div>
@@ -29,7 +29,7 @@
         </ion-card>
       </ion-col>
       <ion-col size="3">
-        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom">
+        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom" (click)="go('Romance')">
           <ion-icon src="assets/romance.svg" size="large"></ion-icon>
           <ion-text color="medium">
             <div >Romance</div>
@@ -37,7 +37,7 @@
         </ion-card>
       </ion-col>
       <ion-col size="3">
-        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom">
+        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom" (click)="go('Comedy')">
           <ion-icon src="assets/comedy.svg" size="large"></ion-icon>
           <ion-text color="medium">
             <div >Comedy</div>
@@ -45,7 +45,7 @@
         </ion-card>
       </ion-col>
       <ion-col size="3">
-        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom">
+        <ion-card class="ion-text-center box ion-no-margin ion-padding-top ion-padding-bottom" (click)="go('Drama')">
           <ion-icon src="assets/drama.svg" size="large"></ion-icon>
           <ion-text color="medium">
             <div>Drama</div>
@@ -81,7 +81,7 @@
     #slides
   >
     <swiper-slide *ngFor="let movie of popularMovies;">
-      <div><img src="{{movie.posterPath}}" (click)="toDetails()"/></div>
+      <div><img src="{{movie.posterPath}}" (click)="toDetails(movie.id)"/></div>
     </swiper-slide>
 
   </swiper-container>

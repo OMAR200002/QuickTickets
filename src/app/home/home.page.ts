@@ -5,6 +5,7 @@ import {CategoriesService} from "../services/categories/categories.service";
 import {MoviesService} from "../services/movies/movies.service";
 import {Movie} from "../models/movie";
 import {NgForOf} from "@angular/common";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -20,11 +21,12 @@ export class HomePage implements OnInit{
   popularMovies!: Movie[] ;
   constructor(private router: Router,
               private categoriesService: CategoriesService,
-              private moviesService: MoviesService) {
+              private moviesService: MoviesService,private s:AuthService) {
 
   }
 
   ngOnInit() {
+    this.s.getUser()
     this.slides?.nativeElement.swiper.spaceBetween("50");
     this.popularMovies = this.moviesService.getPopularMovies();
   }
@@ -34,11 +36,21 @@ export class HomePage implements OnInit{
 
   }
 
-  toDetails() {
+  toDetails(id:string) {
     //TODO : To movie detail
+    this.router.navigate(
+      ['/movie-detail/',id],
+      { queryParams: { Category: 'Popular'}}
+    );
+
   }
 
   goToPopular() {
     this.router.navigateByUrl("/movies-list/Popular");
+  }
+
+  go(cat: string) {
+    this.router.navigateByUrl("/movies-list/"+cat)
+
   }
 }

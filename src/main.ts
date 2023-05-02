@@ -9,6 +9,7 @@ import { environment } from './environments/environment';
 import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {HttpClientModule} from "@angular/common/http";
+import {getAuth, provideAuth} from "@angular/fire/auth";
 
 if (environment.production) {
   enableProdMode();
@@ -24,6 +25,9 @@ bootstrapApplication(AppComponent, {
     ),
     importProvidersFrom(
       provideFirestore(() => getFirestore())
+    ),
+    importProvidersFrom(
+      provideAuth(() => getAuth())
     ),
   ],
 });

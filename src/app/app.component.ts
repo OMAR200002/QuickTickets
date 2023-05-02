@@ -7,6 +7,8 @@ import {map, take, tap} from "rxjs";
 import {collection, doc, Firestore, getDoc, getDocs, query, setDoc} from "@angular/fire/firestore";
 import {Sale} from "./models/sale";
 import {Seat} from "./models/seat.model";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {AuthService} from "./services/auth.service";
 
 register();
 
@@ -16,6 +18,7 @@ register();
   styleUrls: ['app.component.scss'],
   standalone: true,
   imports: [IonicModule,HttpClientModule],
+
 
 })
 export class AppComponent implements OnInit{
