@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import {AlertController, IonicModule} from '@ionic/angular';
 import {Seat} from "../models/seat.model";
 import {SeatService} from "../services/seat.service";
 import {seatStatus} from "../models/seat.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-buy-ticket',
@@ -19,7 +19,10 @@ export class BuyTicketPage implements OnInit {
   rows: number[] = [1,2,3,4,5,6,7,8];
   dateExample = new Date().toISOString();
   selectedSeats: number = 0;
-  constructor(private seatService: SeatService,private route:ActivatedRoute) { }
+  constructor(private seatService: SeatService,
+              private route:ActivatedRoute,
+              private alertController: AlertController,
+              private router: Router) { }
 MovieId!:string
   ngOnInit() {
     this.route.params.subscribe(
@@ -52,8 +55,19 @@ MovieId!:string
     console.log(this.dateExample);
   }
 
-  buy() {
-    this.seatService.confirmSeats();
-    console.log("tm")
+  async buy() {
+    if (this.selectedSeats != 0) {
+      this.seatService.confirmSeats();
+      this.router.navigateByUrl("/confirm-buy");
+    } else {
+      console.clear();
+      const alert = await this.alertController.create({
+        header: 'Warning',
+        message: "please select a seat",
+        buttons: ['OK']
+      });
+      alert.present()
+      console.clear();
+    }
   }
 }

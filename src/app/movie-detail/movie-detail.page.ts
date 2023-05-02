@@ -41,7 +41,7 @@ this.movieService.subject.subscribe({next:value => this.movie=value})
   }
 
   bookmarkFilm(movie: Movie) {
-    // this.bookingService.booking(movie);
+    //this.bookingService.booking(movie);
 
     this.r.navigateByUrl("/tabs/buy-ticket/"+movie.id)
 

@@ -1,10 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Seat, seatStatus} from "../models/seat.model";
 import {Subject} from "rxjs";
-import {collection, doc, Firestore, getDoc, getDocs, query, setDoc, where} from "@angular/fire/firestore";
+import {
+  collection,
+  doc,
+  Firestore,
+  getDoc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  setDoc, startAfter,
+  where
+} from "@angular/fire/firestore";
 import {HttpClient} from "@angular/common/http";
 import {Movie} from "../models/movie";
 import {Show} from "../models/show";
+import firebase from "firebase/compat";
+import {equalTo} from "@angular/fire/database";
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +61,7 @@ show!:Show
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
-    for (const seatRef of this.r) {
+    /*for (const seatRef of this.r) {
       const docRef = doc(this.db, "seats", seatRef);
       const docSnap = await getDoc(docRef);
 
@@ -60,7 +73,28 @@ show!:Show
         // docSnap.data() will be undefined in this case
         console.log("No such document!");
       }
-    }
+    }*/
+    const q2 = query(
+      collection(this.db, "seats"),
+      orderBy("id"),
+      limit(64),
+    );
+    const q3 = query(
+      collection(this.db, "seats"),
+      where("id",">=", 63),
+      limit(64),
+    );
+
+    const documentSnapshots = await getDocs(this.show["sale"]==="LX8rMS3P7LrIWQoQJgHF"?q2:q3);
+
+    documentSnapshots.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      const s = doc.data();
+
+      this.seats.push(new Seat(s["id"],s["status"]))
+    });
+
+    console.log(this.seats);
 
     this.seatSubject.next(this.seats)
 
@@ -90,6 +124,7 @@ show!:Show
     //this.seats=newSeats;
     for (const seat of this.seats) {
       await setDoc(doc(this.db, "seats", seat.seatId+""), {
+        id: seat.seatId,
         status:seat.status,
       });
     }

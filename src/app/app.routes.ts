@@ -76,4 +76,14 @@ export const routes: Routes = [
     path: 'movies-list/:categoryName',
     loadComponent: () => import('./movies-list/movies-list.page').then( m => m.MoviesListPage)
   },
+  {
+    path: 'confirm-buy',
+    loadComponent: () => import('./confirm-buy/confirm-buy.page').then( m => m.ConfirmBuyPage)
+  },
+  {
+    path: 'error',
+    loadComponent: () => import('./error/error.page').then( m => m.ErrorPage)
+  },
+  {path: '**', redirectTo: 'error'},
+
 ];

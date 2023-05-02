@@ -27,7 +27,7 @@ export class OnBoardingPage implements OnInit {
   }
 
   skip() {
-
+      this.router.navigateByUrl("/auth");
   }
 
 
